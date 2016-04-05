@@ -1,0 +1,31 @@
+create table users(
+userid int not null primary key,
+username varchar(50),
+userpass varchar(50)
+);
+
+insert into users(userid, username, userpass) values(1, 'Eric', 'abc123');
+
+create table status (
+statusid int not null primary key,
+statusdescription varchar(255)
+);
+
+1	incomplete
+2	in progress
+3	on hold
+4	complete
+
+create table todolistitems (
+itemid int not null primary key,
+itemname varchar(255),
+itemdescription varchar(255),
+itemstatus int,
+itemuser int,
+priority int,
+datecompleted date,
+duedate date
+);
+alter table todolistitems add foreign key (itemstatus) references status (statusid);
+alter table todolistitems add foreign key (itemuser) references users (userid);
+
